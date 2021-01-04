@@ -1,0 +1,116 @@
+\documentclass[letterpaper,12pt,titlepage,oneside,final]{book}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amssymb}
+
+%%Packages for graphs
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage[latin1]{inputenc}
+
+%Package for multi column
+\usepackage{multicol}
+
+%%Pure laziness.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\cis}{\text{cis}}
+\newcommand*{\pd}[3][]{\ensuremath{\frac{\partial^{#1} #2}{\partial #3}}}
+\newcommand*{\ld}[3][]{\ensuremath{\frac{d^{#1} #2}{d #3}}}
+
+
+% TITLE PAGE GUBBINS
+%----------------------------------------------------------------------
+\newcommand{\thetitle}{Assignment 1}%Change title here
+\newcommand{\coursecode}{MTH712}%Change course code here
+\newcommand{\thedate}{\today}%Change the due date here
+
+
+
+\begin{document}
+% Title Page
+%----------------------------------------------------------------------
+\input{titlepage}
+%----------------------------------------------------------------------
+
+
+% Start Assignment
+%----------------------------------------------------------------------
+\section*{1}
+\begin{align*}
+\text{Given, }&\quad \pd{u}{t}=\pd[2]{u}{x^2} - rx, \quad 0<x<L \quad t>0\\
+\text{and BC: }&\quad \pd{u}{x}(0,t), \quad \pd{u}{x}(L,t) = \alpha, \\
+&\text{Where, r and $\alpha$  are constants.}\\
+\end{align*}
+
+\paragraph{a)}
+\begin{align*}
+&\text{The corresponding time independent problem is:}\\
+&0 = \pd[2]{u}{x^2} - rx, \quad 0<x<L\\
+&\text{with BC:}\quad \pd{u}{x}(0) = 0, \quad \pd{u}{x}(L) = \alpha\\
+\end{align*}
+\begin{align*}
+\text{Now, }\quad \int rx dx &= \int\pd[2]{u}{x^2} dx\\
+\pd{u}{x} &= \frac{rx^2}{2} + K\\
+\end{align*}
+\begin{align*}
+\text{So, }\quad \pd{u}{x}(0) &\implies \frac{r(0)^2}{2} +K = 0\quad\text{ie, }K=0\\
+\text{And, }\quad \pd{u}{L} &\implies \frac{rL^2}{2}  = \alpha\\
+&\text{Now, for a solution to exist, we must have}\quad r = \frac{2\alpha}{L^2} 
+\end{align*}
+\begin{align*}
+\text{Hence, the general solution is, }\quad \pd{u}{x} &= \frac{\alpha x^2}{L^2}\\
+\text{and, } U_E(X) = \int\pd{u}{x} dx =\int\frac{\alpha x^2}{L^2} dx= \frac{\alpha x^3}{3L^2} +K_2
+\end{align*}
+
+
+\paragraph{b)}
+\begin{align*}
+\text{From the previous relationship,}&\quad U(x,o) = f(x), \quad 0<x<L\\
+\int_{0}^{L}\pd{u}{t}dx &= \int_{0}^{L}\pd[2]{u}{x^2}dx - \left.\frac{\alpha x^2}{L^2}\right|_{0}^{L} \quad \text{from }r = \frac{2\alpha}{L^2}\\
+& = \left(\pd{u}{x}(L,t) - \pd{u}{x}(0,t)\right) - \left(\frac{\alpha L^2}{L^2} - \frac{\alpha (0)^2}{L^2} \right) \\
+&= \alpha -0 -\alpha-0 =0
+\end{align*}
+\begin{align*}
+\text{Now, }\quad \ld{}{t}\int_{0}^{L} U(x,t) dx &= 0,\quad t>0\\
+\text{So, }\quad \int_{0}^{L} U(x,t)dx &= P \quad \text{, where $P$ is a constant}\\
+\text{And, }\quad \int_{0}^{L} U(x,t)dx &= \int_{0}^{L} U_E(X) dx = \int_{0}^{L} \left(\frac{\alpha x^3}{3L^2} +K_2\right)dx\\
+& = \left[\frac{\alpha x^4}{12 L^2} +K_2x \right]_{0}^{L}\\
+\\
+\text{Hence, }\quad \int_{0}^{1}f(x) dx &= \frac{\alpha L^4}{12L^2} + K_2L\\
+\text{And the steady-state solution is } U_E(x) &= \frac{\alpha x^3}{3 L^2} + \frac{1}{L}\int_{0}^{L}f(x)dx -\frac{\alpha}{12}
+\end{align*}
+\cleardoublepage
+
+\section*{2}
+\begin{align*}
+f(n) =
+\begin{cases}
+	x      & \quad \text{if }\quad -2<x<0\\
+	1+x    & \quad \text{if }\quad 0<x<2
+\end{cases}
+\end{align*}
+\cleardoublepage
+
+\section*{4}
+\begin{align*}
+&g(y) \approx a_0 + \sum_{n=1}^{\infty}\left(a_n \cos\lambda_n(y) + b_n \sin \lambda_n (y)\right)\\
+&\text{Let $f(x)$ denote $g(y)$ in terms of x and, } y = \frac{a+b}{2} + \frac{b-a}{2L}x\\
+&\text{So, }f(x)\approx  a_0 + \sum_{n=1}^{\infty}\left(a_n \cos\left(\frac{n\pi}{L}x\right) + b_n \sin \left(\frac{n\pi}{L}x\right) \right)\\
+\end{align*}
+\begin{align*}
+\text{Now, }\quad a_0 &= \frac{1}{2L}\int_{-L}^{-L}f(x)dx = \frac{1}{2L}\int_{-L}^{L}\left(\frac{a+b}{2} + \frac{b-a}{2L}x\right)dx\\
+& = \frac{1}{2L} \left[\frac{a+b}{2}x + \frac{b-a}{4L}x^2\right]_{x=-L}^{x=L}\\
+& = \frac{1}{2L}L(a+b) = \frac{a+b}{2}
+\\
+\text{and, }\quad a_n &= \frac{1}{L}\int_{-L}^{L}\left(\frac{a+b}{2}+\frac{b-a}{2L}x\right)\cos\left(\frac{n\pi}{L}x\right)dx\\
+& = 
+\end{align*}
+\cleardoublepage
+
+\end{document}

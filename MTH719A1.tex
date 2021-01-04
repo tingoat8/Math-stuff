@@ -1,0 +1,263 @@
+\documentclass[letterpaper,12pt,titlepage,oneside,final]{book}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amssymb}
+
+%%Packages for graphs
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage[latin1]{inputenc}
+
+%Package for multi column
+\usepackage{multicol}
+
+%%Pure laziness.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\cis}{\text{cis}}
+\newcommand{\matr}[1]{\mathbf{#1}} % undergraduate algebra version
+
+
+% TITLE PAGE GUBBINS
+%----------------------------------------------------------------------
+\newcommand{\thetitle}{Assignment 1}%Change title here
+\newcommand{\coursecode}{MTH719}%Change course code here
+\newcommand{\thedate}{\today}%Change the due date here
+
+
+\begin{document}
+% Title Page
+%----------------------------------------------------------------------
+\input{titlepage}
+%----------------------------------------------------------------------
+
+
+% Start Assignment
+%----------------------------------------------------------------------
+
+
+\section*{1.a}
+\begin{align*}
+\text{Given, }\quad & u y''(t) + v y'(t) + w y(t) = f(t) \quad 1 < t < n+1 \\
+&\text{and step size }h =\frac{a-b}{n}\\
+\end{align*}
+\begin{align*}
+\matr{A} &= \begin{bmatrix}
+	q & r & & 0\\
+	p & \ddots & \ddots &  \\
+	& \ddots & \ddots &  r \\
+	0 &  & p & q  \end{bmatrix}
+\end{align*}
+
+\begin{align*}
+\text{Where } p &= -u- v \times \frac{h}{2} \quad \\
+q &= 2\times u - w\times h^2\\
+r &= -u + v \times \frac{h}{2}
+\end{align*}
+
+\begin{align*}
+\vec{X} = \begin{bmatrix}
+	y(2) \\
+	\vdots\\
+	y(n) \end{bmatrix} \quad
+\vec{B} = \begin{bmatrix}
+	-f(2)\times h^2 -p\times \alpha \\
+	-f(3)\times h^2\\
+	\vdots\\
+	-f(n-1)\times h^2\\
+	-f(n)\times h^2 -p\times \beta \end{bmatrix}
+\end{align*}
+
+\begin{align*}
+\text{Where } \alpha &= y(1) \quad \\
+\beta &= y(n+1)\\
+\text{and, } f(j) \text{ are known values}
+\end{align*}
+\cleardoublepage
+
+\section*{1.c}
+\begin{align*}
+&\text{If computed values are}\quad
+\hat{X} = \matr{A}^{-1}\vec{B}\\
+&\text{and actual values are}\quad
+\vec{X}\\
+&\text{then accuracy for computed values is }\quad \epsilon =||\vec{X} - \hat{X}||\\
+&\text{Where the smaller }\epsilon \text{ is preferred}. 
+\end{align*}
+
+
+\section*{2.a}
+We can convert the room diagram into a transition matrix, where
+the (i, j)-entry of the matrix corresponds to the probability that one person moves from from the jth room to the ith room.\\
+\begin{align*}
+\matr{A} &= \begin{bmatrix}
+0.3333 &   0.2500  &     0 &   0.2500 &        0   &      0 &        0    &     0  &       0 \\
+0.3333  &   0.2500  &  0.3333     &    0  &   0.2000 &     0   &      0  &       0   &      0\\
+0 &   0.2500 &   0.3333  &       0   &      0  &  0.2500  &       0   &      0  &    0\\
+0.3333 &  0 & 0 & 0.2500 &  0.2000   &  0  &  0.3333   & 0   & 0\\
+0 &   0.2500   &   0 & 0.2500 &   0.2000 &   0.2500  &   0  &   0.2500  &   0 \\
+0  & 0 &   0.3333 &  0 &   0.2000  &  0.2500 &  0   &  0 &  0.3333\\
+0 &  0  & 0 &   0.2500  &  0 &   0 &   0.3333  &   0.2500 &    0 \\
+0 &  0 & 0  &  0 &  0.2000 & 0 &   0.3333 &   0.2500 &   0.3333\\
+0 &  0  &  0  &  0 &        0  &  0.2500  &       0  &  0.2500 &   0.3333
+ \end{bmatrix}
+\end{align*}
+Note that all of the columns add up to one. 
+\\
+\\
+Let the state of our system be represented by a probability vector
+\begin{align*}
+\vec{x_{0}} =  \begin{bmatrix}
+	x_{1} \\
+	\vdots\\
+	x_{9} \end{bmatrix}
+\end{align*}
+where each entry represents the probability of being in that room at $t_{0}$.
+\\
+\\ 
+If each time interval is represented by 15 minutes, then at $t_1$
+\begin{align*}
+\vec{x_{1}} &= A^1\times \vec{x_0}\\ =& A^1 \times 
+\begin{bmatrix}
+30/100 \\ 40/100 \\ 0 \\ 0 \\ 10/100 \\ 0 \\ 0 \\ 20/100 \\ 0  \end{bmatrix}
+= \begin{bmatrix}
+    0.2000\\
+    0.2200\\
+    0.1000\\
+    0.1200\\
+    0.1700\\
+    0.0200\\
+    0.0500\\
+    0.0700\\
+    0.0500\\
+    \end{bmatrix}\\
+\end{align*}
+\\
+\\
+And the number of people in each room is
+\begin{align*}
+= 100\times \begin{bmatrix}
+    0.2000\\
+    0.2200\\
+    0.1000\\
+    0.1200\\
+    0.1700\\
+    0.0200\\
+    0.0500\\
+    0.0700\\
+    0.0500\\
+    \end{bmatrix} = 
+    \begin{bmatrix}
+   20\\
+   22\\
+   10\\
+   12\\
+   17\\
+    2\\
+    5\\
+    7\\
+    5\\
+    \end{bmatrix}
+\end{align*}
+
+\section*{2.b}
+We know that $x_n = A x_{n-1} = \hdots = A^n x_0 $ . Given $x_j$, we need to find $x_{j-1}$.
+\begin{align*}
+x_j &=  A \times x_{j-1} &x_j = \begin{bmatrix}    
+	0.1295\\
+    0.0518\\
+    0.1554\\
+    0.0777\\
+    0.2850\\
+    0.1036\\
+    0.1295\\
+    0.0518\\
+    0.0155\\
+    \end{bmatrix}\\
+\end{align*}
+So, the probability distribution of the rooms at $t_{j-1}$ is $x_{j-1} =  A^{-1} \times x_{j}$ and number of people in the each room at $t_{j-1}$ is $1100 \times x_{j-1}$ 
+\begin{align*}
+1100\times x_{j-1} = 1100\times A^{-1}x_j =
+\begin{bmatrix} 
+   125\\
+    50\\
+   150\\
+    75\\
+   275\\
+   100\\
+   125\\
+    50\\
+   150\\ 
+\end{bmatrix}
+\end{align*}
+
+\section*{2.c}
+We know that $x_n = A^n x_0 $. \\
+We set $
+x_{0} = \begin{bmatrix}
+   1\\
+    0\\
+   0\\
+    0\\
+   0\\
+   0\\
+   0\\
+    0\\
+   0\\ 
+\end{bmatrix}$. 
+Then at $t_4$ is the first time that room 9 is filled. 
+\\
+\\
+$x_4 = A^4 \times x_0 = \begin{bmatrix}
+    0.1644\\
+    0.1654\\
+    0.0913\\
+    0.1654\\
+    0.1578\\
+    0.0669\\
+    0.0913\\
+    0.0669\\
+    0.0306 \\
+\end{bmatrix}$
+. Where each row is the distribution of the population at $t_4$.
+
+\cleardoublepage
+\section*{2.d}
+We see that 
+\begin{align*}
+&\lim_{n \to \infty} A^n = \\
+\\
+&\begin{bmatrix}
+0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909\\
+0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212\\
+0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909\\
+0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212\\
+0.1515 & 0.1515 & 0.1515 & 0.1515 & 0.1515 & 0.1515 & 0.1515 & 0.1515 & 0.1515\\
+0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212\\
+0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909\\
+0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212 & 0.1212\\
+0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909 & 0.0909\\
+\end{bmatrix}
+\end{align*}
+\\
+\\
+Hence the Markov chain is convergent, ie regardless of the initial vector, all nonzero vectors will converge to $\lim_{n \to \infty} x_{n} = \lim_{n \to \infty} A^n \times x_0 $\\
+\\
+$\lim_{x \to \infty} x_{n} = 
+\begin{bmatrix}    
+    0.0909\\
+    0.1212\\
+    0.0909\\
+    0.1212\\
+    0.1515\\
+    0.1212\\
+    0.0909\\
+    0.1212\\
+    0.0909\\
+\end{bmatrix}$. Thus it is also the distribution of resources for each room.
+\end{document}

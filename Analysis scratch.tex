@@ -1,0 +1,62 @@
+\documentclass[letterpaper,12pt,titlepage,oneside,final]{book}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amssymb}
+
+%%Packages for graphs
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage[latin1]{inputenc}
+
+%Package for multi column
+\usepackage{multicol}
+
+%%Pure laziness.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+
+
+% TITLE PAGE GUBBINS
+%----------------------------------------------------------------------
+\newcommand{\thetitle}{Exercises for MTH 640 II}%Change title here
+\newcommand{\coursecode}{MTH640}%Change course code here
+\newcommand{\thedate}{\today}%Change the due date here
+
+
+\begin{document}
+% Title Page
+%----------------------------------------------------------------------
+\input{titlepage}
+%----------------------------------------------------------------------
+
+
+% Start Assignment
+%----------------------------------------------------------------------
+
+Sps, $\Omega = \{1,2,3\}$ and $\mathcal{F} = \{\varnothing, \Omega, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}\}$, ie the power set of $\Omega$. Sps further that $\mathcal{C} = \{\{1\}, \{2,3\}\}\} \subset \mathcal{F}$.
+Now, 
+\begin{align*}
+\sigma(\mathcal{C}) = \{&\mathcal{C}, \\
+						&\mathcal{C}^{c} =\{ \varnothing, \Omega, \{2\}, \{3\}, \{1,2\}, \{1,3\}  \}, \\
+						&\mathcal{C} \cap \mathcal{C}^{c} = \varnothing, \\
+						&\mathcal{C} \cup \mathcal{C}^{c} = \mathcal{F} \}
+\end{align*}
+
+I have failed to show $\mathcal{C} \subset \sigma(\mathcal{C}) $, this is NOT a  $\sigma$-algebra over $\mathcal{C} $ since a $\sigma$-algebra over $\mathcal{C} $ must contain $\mathcal{C}$. However, the following is a a $\sigma$-algebra over $\mathcal{C}$:
+
+
+\begin{align*}
+\sigma(\mathcal{C}) = \{&\overbrace{\{1\}, \{2,3\}}^{ = \mathcal{C} }, \\
+						&\overbrace{\{1, 2,3\}}^{{\{1\} \cup \{2,3\}}  } = \Omega, \\
+						& \Omega^{c} = \varnothing, \}
+\end{align*}.
+
+We notice that  $\mathcal{C}$ is a subset of the above collection of sets. Furthermore, we find that the above collection of sets is a $\sigma$-algebra by Definition 1.1.
+
+\end{document}

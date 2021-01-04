@@ -1,0 +1,89 @@
+\documentclass[letterpaper,12pt,titlepage,oneside,final]{book}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amssymb}
+
+%%Packages for graphs
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage[latin1]{inputenc}
+
+%Package for multi column
+\usepackage{multicol}
+
+%%Pure laziness.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\cis}{\text{cis}}
+\newcommand{\matr}[1]{\mathbf{#1}} % undergraduate algebra version
+
+
+% TITLE PAGE GUBBINS
+%----------------------------------------------------------------------
+\newcommand{\thetitle}{Assignment 2}%Change title here
+\newcommand{\coursecode}{MTH719}%Change course code here
+\newcommand{\thedate}{\today}%Change the due date here
+
+
+\begin{document}
+% Title Page
+%----------------------------------------------------------------------
+\input{titlepage}
+%----------------------------------------------------------------------
+
+
+% Start Assignment
+%----------------------------------------------------------------------
+
+
+\section*{1.a}
+To show \quad $\frac{A + A^T}{2}$\quad is symmetric, we need to show: \\
+$\frac{A + A^T}{2} = \left(\frac{A + A^T}{2} \right)^T$ \\
+\begin{align*}
+\text{Now, }\quad \left(\frac{A + A^T}{2} \right)^T 
+&= \frac{A^T + (A^T)^T}{2} 
+= \frac{A^T + A}{2}
+= \frac{A + A^T}{2}\\
+\text{Hence,}\quad
+\frac{A + A^T}{2} &= \left(\frac{A + A^T}{2} \right)^T
+\end{align*}
+
+\begin{align*}
+\text{Now, we want to show: }\\
+X^T\left(\frac{A + A^T}{2}\right)X &= X^TAX\\
+\text{We know, }\quad \frac{A + A^T}{2} &= \left(\frac{A + A^T}{2} \right)^T\\
+\text{Then, }\quad 
+X^T\left(\frac{A + A^T}{2}\right)X&= X^T\left(\frac{A + A^T}{2} \right)^T X\quad \text{by left and right matrix multiplication}\\
+&=\left[\left(\frac{A + A^T}{2} \right)X\right]^T X \quad\text{by properties of transpose}\\
+&= \left(\frac{AX + A^TX}{2} \right)^T X \quad\text{by distributive property}\\
+&= \left(\frac{X^T A^T + X^T A}{2}\right)X\quad\text{by properties of transpose}\\
+&=\frac{X^T A^T X + X^T A X}{2}\quad\text{by distributive property}\\
+\text{Now, if }\quad A = A^T\quad\text{then: }\\
+\frac{X^T A^T X + X^T A X}{2}
+&=\frac{X^T A^T X + X^T A^T X}{2}\\
+& = \frac{2X^T A^T X}{2} = X^T A^T X 
+\end{align*}
+
+\cleardoublepage
+
+\section*{1.b}
+\text{Suppose A is a positive definite matrix, then:}
+\begin{align*}
+X^T A X &= X^TLDUX = X^TLDL^TX = X^TU^TDUX\\
+&\text{by definition of positive definite LDU factorization}&\\
+& =(UX)^T D (UX)\\
+\end{align*}
+So, if the diagonal elements of D are positive numbers $X^T A X$ is positive definite $\forall X$, since $X^T A X$ also has a positive definite LDU factorization.
+
+
+\section*{1.c}
+Using Taylor's theorem in $\R ^n$ we know that $f(x) = f(x_0) + (x-x_0)^Tg(x_0) + (x-x_0)^T$
+
+
+
+\end{document}

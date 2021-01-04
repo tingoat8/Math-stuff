@@ -1,0 +1,179 @@
+\documentclass[letterpaper,12pt,titlepage,oneside,final]{book}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{amsmath,amsthm,amssymb}
+
+%%Packages for graphs
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage[latin1]{inputenc}
+
+%Package for multi column
+\usepackage{multicol}
+
+%%Pure laziness.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\GN}{\mathcal{N}}
+
+% TITLE PAGE GUBBINS
+%----------------------------------------------------------------------
+\newcommand{\thetitle}{Assignment 1}%Change title here
+\newcommand{\coursecode}{MTH712}%Change course code here
+\newcommand{\thedate}{\today}%Change the due date here
+
+
+\begin{document}
+% Title Page
+%----------------------------------------------------------------------
+\input{titlepage}
+%----------------------------------------------------------------------
+
+
+% Start Assignment
+%----------------------------------------------------------------------
+
+
+\section*{Question 1}
+
+\begin{align*}
+\text{Let $\mu(t)$ be such that }\quad
+\mu(t) a &= \mu'(t)\\
+a &= \frac{\mu'(t)}{\mu(t)}\\
+&=\frac{d}{dt}\left(\ln(\mu (t)) \right)\\
+\text{then,  }\quad 
+\ln(\mu (t) &= \int a dt\\
+& = at + C_1 \\
+\text{and,  }\quad 
+\mu(t) &=  C_1 e^{at} \quad \text{ (*)}\\
+\\
+\text{Now, }\quad
+\mu(t)\frac{du}{dt} + \mu(t) au &= \mu(t) e^{at}\\
+\mu(t)\frac{du}{dt} + \mu'(t)u &= \mu(t) e^{at}\\
+\\
+\text{By the product rule, }\quad
+\frac{d}{dt}(\mu(t)u(t)) &= \mu(t) e^{at}\\
+\\
+\int\frac{d}{dt}(\mu(t)u(t))dt &= \int\mu(t) e^{at}dt\\
+\mu(t)u(t)) + C_2 &= \int\mu(t) e^{at}dt\\
+u(t)& = \frac{\int\mu(t) e^{at}dt + C_2}{\mu(t)}\\
+& = \frac{\int\mu(t) e^{at}dt + C_2}{\mu(t)}\\
+\text{then, } \quad 
+u(t)& = \frac{C_1 \int  e^{at} e^{at}dt + C_3}{C_1 e^{at}} \quad \text{by (*) }\\
+\\
+\text{By substitution, }
+\quad u(t)& = \frac{(e^{at})^2 + C_4}{2ae^{at}} \\
+\\
+\text{Hence, } 
+\quad u(t) &= \frac{e^{at}}{K_1} + \frac{K_2}{e^{at}} \\
+\end{align*}
+\clearpage 
+
+
+\section*{Question 2}
+\begin{align*}
+\frac{d^2u}{dx^2} - u\gamma^2 + \gamma^2 T &= 0\quad \text{where $\gamma, T$ are constants}\\
+\frac{d^2u}{dx^2} - u\gamma^2 &= - \gamma^2 T \quad \text{(*)}\\
+\\
+\text{Using the auxillary equation, }\quad U = e^{mx}\\
+\text{Now, }\quad m^2 - \gamma^2 = 0\\
+(m + \gamma)(m - \gamma)=0\\
+\text{Hence }\quad m = \pm \gamma\\
+\\
+\text{So, }\quad U_c &= C_1 e^{\gamma x} + C_2e^{-\gamma x}\\
+\\
+\text{Using undetermined coefficients: }\\
+\text{Let $U_p = K \quad$, where K is a constant}\\
+\\
+\text{Now, sub into (*)}\\
+\text{So, }\quad -\gamma^2 D &= -\gamma^2 T\\
+D &= T\\
+\text{and, }\quad U_p &= T\\
+\\
+\text{Hence, the general solutions is, }\quad \\
+U(x) = U_c + U_p &= C_1 e^{\gamma x} + C_2e^{-\gamma x} + T
+\end{align*}
+
+\clearpage 
+
+
+\section*{Question 3}
+\begin{align*}
+\frac{d}{dx}\left[(h + k x) \frac{dv}{dx} \right] &= 0\\
+\\
+\int \frac{d}{dx}\left[(h + k x) \frac{dv}{dx} \right] &= \int 0 dx \\
+(h + k x) \frac{dv}{dx} & = C_1 \quad \text{where $C_1$ is some constant}\\
+\\
+\text{Now, }\quad  dv &= \frac{C_1}{h + k x}dx\\
+\int dv &= \int \frac{C_1}{h + k x}dx\\
+\\
+\text{Hence, }\quad v &= C_1 \int \frac{dx}{h + k x}\\
+& = C_1 \frac{\ln |h + kx|}{k} + C_2\\
+\end{align*}
+
+\clearpage
+
+
+\section*{Question 4}
+\begin{align*}
+t^2 \frac{d^2u}{dt^2} + 2t \frac{du}{dt} -q(q+1)u &= 0\text{ (*)} \quad \text{Where, $t>0$ , q is a positive constant}\\
+\\
+&\text{Now,}\quad u = t^m\\
+&\text{So, }\quad \frac{du}{dt} = mt^{m-1}\\
+&\text{and, }\quad \frac{d^2u}{dt^2} = (m)(m-1)t^{m-2}\\
+\\
+\text{Now substituting into (*)}\\
+t^2 \frac{d^2u}{dt^2} + 2t \frac{du}{dt} -q(q+1)u &= (m)(m-1)t^{m} + 2 mt^{m} -q(q+1)t^m \\
+&= t^m \left[ m(m-1) + 2m -q(q+1)\right]\\
+&= t^m \left[ m^2 + m - (q^2 +q)\right] = 0 \\
+\\
+&\text{So, $\quad t^m = 0$ and $ m^2 + m - (q^2 +q) = 0$}\\
+\\
+\text{Now, }\quad m^2 + m &= q^2 +q\\ 
+m^2 + m + \frac{1}{4} & = q^2 +q + \frac{1}{4}\\  
+\left(m+\frac{1}{2}\right)^2 &= \left( q + \frac{1}{2} \right)^2 \\
+\left[m+\frac{1}{2} +  q + \frac{1}{2} \right]\left[m+\frac{1}{2} - q - \frac{1}{2} \right]& = 0\\
+&\text{So, $ m = q$ and $m = -(q+1)$}\\
+\\
+\text{Hence, } u =  C_1 t^q + C_2 t^{-(q+1)}
+\end{align*}
+\clearpage
+
+\section*{Question 5}
+\begin{align*}
+\frac{d^2u}{dx^2} -au = 0 \quad 0 < x < 1 \\
+\frac{du}{dx} (0) = 0\\
+u(1) = 1\\
+\\
+&\text{Using the auxillary equation, }\quad u = e^{mx}\\
+&\text{Now, }\quad m^2 - a = 0\\
+\text{Hence }\quad m = \pm \sqrt{a}\\
+\text{So, }\quad U_c &= C_1 e^{\sqrt{a} x} + C_2e^{-\sqrt{a} x} \quad \text{(*)}\\
+\\
+&\text{Recall, }\\
+&\cosh x = \frac{e^x + e^{-x}}{2}\quad \frac{d}{dx} \cosh x = \sinh x\\
+&\sinh x = \frac{e^x - e^{-x}}{2} \quad \frac{d}{dx} \sinh x = \cosh x\\
+\end{align*}
+\begin{align*}
+\text{Now, substitution into (*)}\\
+U_c & = \left( C_1 + C_2 \right)\cosh (\sqrt{a}x) + \left( C_1 - C_2 \right)\sinh (\sqrt{a}x)\\
+\text{Using the initial conditions, }\\
+\frac{du}{dx}(0) &= \left( C_1 + C_2 \right) \sqrt{a}\sinh (\sqrt{a}0) + \left( C_1 - C_2 \right) \sqrt{a}\cosh (\sqrt{a}0)\\
+&=\left( C_1 - C_2 \right)\sqrt{a} = 0\\
+\text{So, } \quad C_1 = C_2\\
+\\
+\text{Also, }\quad u(1) &= \left( C_1 + C_2 \right)\cosh (\sqrt{a}(1)) + \left( C_1 - C_2 \right)\sinh (\sqrt{a}(1))\\
+\\
+\text{So, }\quad 1 = 2C_1\cosh(\sqrt{a})\\
+\\
+\text{From this, }\quad C_1 = C_2 = \frac{1}{2\cosh(\sqrt{a})}\\
+\\
+\text{Hence, }\quad
+u(x) & = \frac{\cosh(\sqrt{a}x)}{\cosh(\sqrt{a})}
+\end{align*}
+\end{document}
